@@ -181,6 +181,37 @@ Evaluated on **101 ground truth Q&A pairs** using **LLM-as-a-judge** (Gemini 2.0
 | **Answer Relevance**   | `0.696` | 69.6% alignment between answer and question intent. |
 | **Answer Correctness** | `0.659` | 65.9% factual accuracy against ground truth. |
 
+
+---
+---
+
+
+### (Gemini-2.0-flash-lite)
+Evaluated on **101 ground truth Q&A pairs** using **LLM-as-a-judge** (Gemini 2.0 Flash) with chunk_size = 980, chunk_overlap = 200:
+
+### zero-Shot Metrics with chunk_size = 800, chunk_overlap = 120
+
+| Metric                  | Score  | Interpretation |
+|------------------------|--------|---------------|
+| **Context Relevance**  | `0.663` | 66.3% of retrieved context is relevant to the question. |
+| **Context Recall**     | `0.763` | 76.3% of ground truth information is retrieved. |
+| **Faithfulness**       | `0.659` | 65.9% of generated claims are fully grounded in context → **room for improvement**. |
+| **Answer Relevance**   | `0.83` | 83% alignment between answer and question intent. |
+| **Answer Correctness** | `0.732` | 73.2% factual accuracy against ground truth. |
+
+
+#### Few-shot Metrics with chunk_size = 800, chunk_overlap = 120
+
+
+| Metric                  | Score  | Interpretation |
+|------------------------|--------|---------------|
+| **Context Relevance**  | `0.663` | 66.3% of retrieved context is relevant to the question. |
+| **Context Recall**     | `0.763` | 76.3% of ground truth information is retrieved. |
+| **Faithfulness**       | `0.604` | 60.4% of generated claims are fully grounded in context → **room for improvement**. |
+| **Answer Relevance**   | `0.726` | 72.6% alignment between answer and question intent. |
+| **Answer Correctness** | `0.658` | 65.8% factual accuracy against ground truth. |
+
+
 ---
 ---
 
@@ -303,7 +334,7 @@ Evaluated on **101 ground truth Q&A pairs** using **LLM-as-a-judge** (Gemini 2.5
 - `chunk_size=980, overlap=200` (default)  
 - `chunk_size=800, overlap=120` (alternative)
 
-**Judges:** Gemini 2.5 Flash, Gemini 2.0 Flash, gemma-3-1b-it, Gemini 2.5 Pro  
+**Judges:** Gemini 2.5 Flash, Gemini 2.0 Flash, gemma-3-1b-it, Gemini 2.5 Pro , Gemini-2.0-flash-lite
 **Prompting Strategies:** Zero-shot, Few-shot, Chain-of-Thought (COT)
 
 ---
@@ -329,7 +360,8 @@ Evaluated on **101 ground truth Q&A pairs** using **LLM-as-a-judge** (Gemini 2.5
 | **gemma-3-1b-it** | Few-shot | 800/120 | 0.722 | 0.777 | **0.761** | **0.851** | **0.794** |
 | **Gemini 2.5 Flash** | Few-shot | 980/200 | 0.718 | 0.768 | 0.718 | 0.769 | 0.737 |
 | **Gemini 2.0 Flash** | Zero-shot | 800/120 | 0.722 | 0.777 | 0.744 | **0.825** | 0.776 |
-| **gemma-3-1b-it** | COT | 800/120 | 0.722 | 0.777 | 0.754 | 0.831 | 0.783 |
+| **gemma-3-1b-it** | COT | 800/120 | 0.722 | 0.777 | 0.754 | **0.831** | 0.783 |
+| **Gemini-2.0-flash-lite** | Zero-shot | 800/120 | 0.663 | 0.763 | 0.659 | **0.83** | 0.732 |
 
 ---
 

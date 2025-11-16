@@ -3,7 +3,7 @@
 
 # %%
 
-# ## GeeksforGeeks Loader – Dynamic Content Extraction (Guaranteed >0 Docs)
+# ## GeeksforGeeks Loader – Dynamic Content Extraction
 
 from langchain_community.document_loaders import WebBaseLoader
 import bs4
@@ -85,7 +85,7 @@ print(f"Successfully loaded & cleaned {len(clean_docs)} documents")
 # Chunking the Data
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=150)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=120)
 documents = text_splitter.split_documents(clean_docs)
 
 # %%
@@ -135,6 +135,9 @@ for model in genai.list_models():
     if 'generateContent' in model.supported_generation_methods:
         print(model.name)
 
+# %% [markdown]
+# ### Configuring Gemini Model
+
 # %%
 # === Simple Gemini Wrapper for LangChain ===
 import os
@@ -149,7 +152,7 @@ if not api_key:
 
 genai.configure(api_key=api_key)
 
-_GEMINI_MODEL_ID = "gemma-3-1b-it"
+_GEMINI_MODEL_ID = "gemini-2.0-flash-lite"
 _generation_config = genai.types.GenerationConfig(
     temperature=0.3,
     top_p=0.9,
@@ -424,9 +427,6 @@ avg_metrics = results_df.drop(columns=["Question"]).mean().round(3)
 print("\n=== Average RAG Evaluation Metrics (10 samples) ===\n")
 print("\n Metrics")
 print(avg_metrics.to_frame().T)
-
-
-# %%
 
 
 
