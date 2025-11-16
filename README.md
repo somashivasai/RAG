@@ -5,13 +5,13 @@ A **Retrieval-Augmented Generation (RAG)** pipeline that extracts structured Q&A
 
 ---
 
-## 📖 Overview
+## Overview
 
 This project implements a **RAG system** to answer machine learning and programming questions by retrieving relevant context from a curated knowledge base built from **GeeksforGeeks**. The ground truth evaluation dataset — [`prsdm/Machine-Learning-QA-dataset`](https://huggingface.co/datasets/prsdm/Machine-Learning-QA-dataset) — contains **101 high-quality question-answer pairs** used for **zero-shot, few-shot, and Chain-of-Thought (CoT)** prompting evaluation.
 
 ---
 
-## 🚀 RAG Pipeline Steps
+## RAG Pipeline Steps
 
 1. **Knowledge Ingestion**
    - Scrape and extract clean Q&A content from GeeksforGeeks articles.
@@ -42,18 +42,13 @@ This project implements a **RAG system** to answer machine learning and programm
 
 ---
 
-## 🔑 Key Components
+## Key Components
 
 ### Embedding Model: `all-MiniLM-L6-v2`
 - **Lightweight**: Only **80 MB**, 384-dimensional vectors.
 - **High Performance**: Outperforms larger models on semantic textual similarity (STS) tasks.
 - **Speed**: ~14,000 sentences/sec on CPU — ideal for real-time retrieval.
 - **Sentence-Level Optimization**: Trained on 1B+ sentence pairs for robust meaning representation.
-
-### LLM: Gemini 2.5 Flash
-- **Multimodal & Fast**: Optimized for low-latency, high-throughput inference.
-- **Strong Reasoning**: Supports complex instructions, CoT, and structured output.
-- **Cost-Effective**: Ideal for scalable RAG applications.
 
 ### Vector Database: ChromaDB
 - **Simple & Local**: No external dependencies; runs in-memory or persisted to disk.
@@ -62,7 +57,22 @@ This project implements a **RAG system** to answer machine learning and programm
 
 ---
 
-## 🧠 Prompting Techniques
+### Models used
+
+## Gemini + Gemma Model Technical Specs
+
+| Model | Context Window | Input Token Limit | Output Token Limit | Approx Throughput | Cost (Input / Output) |
+|------|----------------|------------------|-------------------|-------------------|------------------------|
+| Gemini 2.5 Flash | 2M | 2M | ~8K | Very high | $0.10 / 1M input, $0.40 / 1M output |
+| Gemini 2.0 Flash | 1M | 1M | ~8K | High | $0.075 / 1M input, $0.30 / 1M output |
+| Gemini 2.0 Flash-Lite | 128K | 128K | ~4K | Ultra-fast | $0.025 / 1M input, $0.10 / 1M output |
+| Gemini 2.5 Pro | 2M | 2M | ~32K | Medium | $1.25 / 1M input, $5.00 / 1M output |
+| Gemma-3 1B-IT | 8K | 8K | ~2K | Very high | Free (open weights) |
+
+
+---
+
+## Prompting Techniques
 
 | Technique       | Description |
 |-----------------|-----------|
@@ -72,7 +82,7 @@ This project implements a **RAG system** to answer machine learning and programm
 
 ---
 
-## 📊 Evaluation Metrics (RAG Triad + Correctness)
+## Evaluation Metrics (RAG Triad + Correctness)
 
 ### (Gemini 2.5 Flash)
 
