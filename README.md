@@ -1,4 +1,4 @@
-# RAG Implementation: Knowledge Extraction from GeeksforGeeks using Gemini 2.5 Flash
+# RAG Implementation: Knowledge Extraction from GeeksforGeeks using various gemini models
 
 
 A **Retrieval-Augmented Generation (RAG)** pipeline that extracts structured Q&A knowledge from **GeeksforGeeks** articles and enables intelligent question-answering using **Gemini 2.5 Flash**, **Sentence Transformers**, and **ChromaDB**.
